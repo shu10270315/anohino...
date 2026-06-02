@@ -1,11 +1,242 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>あの日</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(120, 80, 255, 0.25), transparent 35%),
+        linear-gradient(180deg, #08080c 0%, #111118 55%, #050507 100%);
+      color: #f5f1ea;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      color: #cfc7ff;
+      font-size: 13px;
+      letter-spacing: .08em;
+      margin-bottom: 28px;
+      background: rgba(255,255,255,.06);
+    }
+
+    h1 {
+      font-size: 64px;
+      line-height: 1;
+      margin: 0 0 18px;
+      letter-spacing: .06em;
+      font-weight: 800;
+    }
+
+    .lead {
+      font-size: 25px;
+      line-height: 1.6;
+      font-weight: 700;
+      margin: 0 0 18px;
+    }
+
+    .sub {
+      color: #b8b2aa;
+      line-height: 1.9;
+      font-size: 15px;
+      margin-bottom: 34px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 18px;
+      border-radius: 18px;
+      background: #f5f1ea;
+      color: #08080c;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 17px;
+      margin-bottom: 34px;
+      box-shadow: 0 15px 45px rgba(255,255,255,.16);
+    }
+
+    .section-title {
+      color: #8f88ff;
+      font-size: 14px;
+      margin: 34px 0 14px;
+      letter-spacing: .08em;
+      font-weight: 700;
+    }
+
+    .card {
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.22);
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #ddd7ce;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .reaction {
+      margin-top: 14px;
+      color: #aaa2ff;
+      font-size: 13px;
+    }
+
+    .form {
+      margin-top: 24px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.35);
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 16px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
+      background: #8f88ff;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .note {
+      color: #888;
+      font-size: 12px;
+      line-height: 1.7;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 42px;
+      color: #777;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 48px;
+      }
+
+      .lead {
+        font-size: 21px;
+      }
+
+      .wrap {
+        padding-top: 38px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>あの日</h1>
-  <p>匿名で気持ちを残す場所</p>
+  <main class="wrap">
+    <div class="tag">匿名で残す、あの日のこと</div>
+
+    <h1>あの日</h1>
+
+    <p class="lead">
+      人生で一番、<br>
+      後悔していることを書いてください。
+    </p>
+
+    <p class="sub">
+      誰にも言えなかったこと。<br>
+      謝れなかったこと。<br>
+      今でも思い出してしまう、あの日のこと。
+    </p>
+
+    <a href="#post" class="button">匿名で残す</a>
+
+    <div class="section-title">みんなの「あの日」</div>
+
+    <section class="card">
+      <h2>高校の時、親友を裏切った。</h2>
+      <p>
+        あの時、周りに流されて笑った。<br>
+        本当は助けたかった。今でも夢に出てくる。
+      </p>
+      <div class="reaction">🕊️ 24人が読んだ　🤍 12人が共感</div>
+    </section>
+
+    <section class="card">
+      <h2>父が亡くなる前日、電話に出なかった。</h2>
+      <p>
+        「あとでかけ直せばいい」と思った。<br>
+        その「あと」は、もう来なかった。
+      </p>
+      <div class="reaction">🕊️ 58人が読んだ　🤍 31人が共感</div>
+    </section>
+
+    <section class="card">
+      <h2>好きだった人に、好きと言えなかった。</h2>
+      <p>
+        今さらどうにもならないけど、<br>
+        たまに思う。あの日言ってたら、何か変わったのかな。
+      </p>
+      <div class="reaction">🕊️ 43人が読んだ　🤍 19人が共感</div>
+    </section>
+
+    <form id="post" class="form">
+      <div class="section-title">あなたの「あの日」を残す</div>
+      <input type="text" placeholder="タイトル" />
+      <textarea placeholder="ここに、誰にも言えなかったことを書いてください。"></textarea>
+      <button type="button">投稿する</button>
+      <p class="note">
+        ※今はデモ版です。投稿内容はまだ保存されません。<br>
+        次に本物の投稿機能を追加します。
+      </p>
+    </form>
+
+    <footer>
+      © あの日 — 言えなかった言葉を、ここに。
+    </footer>
+  </main>
 </body>
 </html>
