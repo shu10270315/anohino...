@@ -1,56 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>人生ガチャ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人生主人公タイプ診断</title>
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
   min-height:100vh;
   font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+  color:white;
   background:
-    radial-gradient(circle at 50% 0%,rgba(255,210,120,.18),transparent 35%),
-    linear-gradient(180deg,#050505,#101010 55%,#050505);
-  color:#fff;
+    radial-gradient(circle at 50% 0%,rgba(255,205,95,.22),transparent 35%),
+    radial-gradient(circle at 10% 70%,rgba(120,70,255,.16),transparent 28%),
+    linear-gradient(180deg,#050505,#111,#050505);
 }
-.app{
-  max-width:520px;
-  margin:0 auto;
-  min-height:100vh;
-  padding:22px;
-}
-.hero{
-  padding:70px 0 34px;
-  text-align:center;
-}
-.badge{
-  display:inline-block;
-  padding:7px 13px;
-  border:1px solid rgba(255,215,120,.35);
-  border-radius:999px;
-  color:#ffd978;
-  font-size:12px;
-  margin-bottom:18px;
-}
-h1{
-  font-size:46px;
-  margin:0;
-  letter-spacing:.08em;
-}
-.lead{
-  color:rgba(255,255,255,.7);
-  line-height:1.8;
-  margin:18px 0 28px;
-}
+.app{max-width:560px;margin:0 auto;min-height:100vh;padding:22px}
+.hero{text-align:center;padding:76px 0 35px}
+.badge{display:inline-block;border:1px solid rgba(255,215,120,.4);color:#ffd978;border-radius:999px;padding:7px 14px;font-size:12px;margin-bottom:18px}
+h1{font-size:42px;margin:0;line-height:1.15}
+.lead{color:rgba(255,255,255,.72);line-height:1.9;margin:20px 0 30px}
 .card{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.13);
   border-radius:28px;
-  padding:20px;
+  padding:22px;
   margin-bottom:16px;
-  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
 }
 button{
   width:100%;
@@ -59,246 +36,164 @@ button{
   padding:16px;
   font-size:16px;
   font-weight:900;
+  background:linear-gradient(135deg,#ffe08a,#b8862b);
   color:#080808;
-  background:linear-gradient(135deg,#ffe08a,#c8942e);
-}
-button.secondary{
-  margin-top:10px;
-  background:rgba(255,255,255,.12);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.16);
-}
-.life-title{
-  color:#ffd978;
-  font-size:13px;
-  margin-bottom:12px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.item{
-  background:rgba(0,0,0,.28);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  padding:13px;
-}
-.label{
-  color:rgba(255,255,255,.45);
-  font-size:11px;
-}
-.value{
-  margin-top:5px;
-  font-weight:800;
-}
-.event{
-  font-size:20px;
-  line-height:1.7;
-  font-weight:800;
 }
 .choice{
   margin-top:10px;
+  background:rgba(255,255,255,.12);
+  color:white;
+  border:1px solid rgba(255,255,255,.16);
 }
-.result{
-  line-height:1.8;
-  color:rgba(255,255,255,.86);
-}
-.score{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:14px;
-}
-.score div{
-  flex:1;
-  text-align:center;
-  background:rgba(255,255,255,.08);
-  border-radius:16px;
-  padding:12px 8px;
-}
-.score b{
-  color:#ffd978;
-  font-size:22px;
-}
+.progress{height:8px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ffe08a,#b8862b)}
+.qnum{color:#ffd978;font-size:13px;margin-bottom:12px}
+.question{font-size:22px;font-weight:900;line-height:1.6;margin-bottom:14px}
 .hidden{display:none}
-.small{
-  color:rgba(255,255,255,.45);
-  font-size:12px;
-  line-height:1.6;
-  text-align:center;
-  margin-top:18px;
-}
-.footer{
-  text-align:center;
-  color:rgba(255,255,255,.35);
-  font-size:12px;
-  margin:30px 0 10px;
-}
-@media(min-width:760px){
-  body{padding:34px 0}
-  .app{
-    border-radius:34px;
-    min-height:90vh;
-    background:rgba(255,255,255,.03);
-    box-shadow:0 40px 100px rgba(0,0,0,.55);
-  }
-}
+.resultIcon{font-size:76px;text-align:center}
+.resultName{text-align:center;font-size:34px;font-weight:900;margin-top:6px}
+.catch{text-align:center;color:#ffd978;font-size:18px;font-weight:800;margin:10px 0 20px}
+.sectionTitle{color:#ffd978;font-weight:900;margin-top:18px}
+.text{color:rgba(255,255,255,.84);line-height:1.85;font-size:15px}
+.small{text-align:center;color:rgba(255,255,255,.45);font-size:12px;line-height:1.7;margin-top:16px}
+.copy{margin-top:14px}
+.secondary{margin-top:10px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.15)}
 </style>
 </head>
 <body>
 <main class="app">
 
-  <section id="top" class="hero">
-    <div class="badge">AI LIFE SIMULATOR</div>
-    <h1>人生ガチャ</h1>
-    <p class="lead">
-      あなたは、別の人生を引けます。<br>
-      金持ちか。貧乏か。成功か。後悔か。<br>
-      すべては、最初の一回で決まる。
-    </p>
-    <button onclick="drawLife()">人生を引く</button>
-    <p class="small">※まずは無料プロトタイプ版。何度でも引けます。</p>
-  </section>
+<section id="top" class="hero">
+  <div class="badge">STORY TYPE TEST</div>
+  <h1>人生主人公<br>タイプ診断</h1>
+  <p class="lead">あなたは、どんな物語の主人公か。<br>12の主人公タイプから診断します。</p>
+  <button onclick="start()">診断を始める</button>
+  <p class="small">全12問・無料・登録なし</p>
+</section>
 
-  <section id="lifeCard" class="card hidden">
-    <div class="life-title">あなたの人生</div>
-    <div class="grid" id="lifeGrid"></div>
-    <button style="margin-top:16px" onclick="startLife()">人生を始める</button>
-    <button class="secondary" onclick="drawLife()">引き直す</button>
-  </section>
+<section id="quiz" class="card hidden">
+  <div class="progress"><div id="bar" class="bar"></div></div>
+  <div id="qnum" class="qnum"></div>
+  <div id="question" class="question"></div>
+  <div id="choices"></div>
+</section>
 
-  <section id="eventCard" class="card hidden">
-    <div class="life-title">人生イベント</div>
-    <div class="event" id="eventText"></div>
-    <div id="choices"></div>
-  </section>
+<section id="result" class="card hidden">
+  <div id="resultIcon" class="resultIcon"></div>
+  <div id="resultName" class="resultName"></div>
+  <div id="catch" class="catch"></div>
 
-  <section id="resultCard" class="card hidden">
-    <div class="life-title">選択の結果</div>
-    <div class="result" id="resultText"></div>
-    <div class="score">
-      <div>幸福<br><b id="happy">0</b></div>
-      <div>金<br><b id="money">0</b></div>
-      <div>後悔<br><b id="regret">0</b></div>
-    </div>
-    <button style="margin-top:16px" onclick="nextEvent()">次のイベントへ</button>
-    <button class="secondary" onclick="resetAll()">最初から</button>
-  </section>
+  <div class="sectionTitle">あなたの本質</div>
+  <div id="mainText" class="text"></div>
 
-  <div class="footer">人生は、選べない。だけど、覗くことはできる。</div>
+  <div class="sectionTitle">強み</div>
+  <div id="strong" class="text"></div>
+
+  <div class="sectionTitle">弱点</div>
+  <div id="weak" class="text"></div>
+
+  <div class="sectionTitle">恋愛傾向</div>
+  <div id="love" class="text"></div>
+
+  <div class="sectionTitle">仕事・金</div>
+  <div id="work" class="text"></div>
+
+  <button class="copy" onclick="copyResult()">結果をコピー</button>
+  <button class="secondary" onclick="restart()">もう一度診断する</button>
+</section>
+
 </main>
 
 <script>
-const profiles = [
-  ["17歳","男性","沖縄県","高校生","年収0円","彼女なし","貯金2万円"],
-  ["24歳","女性","東京都","美容師","年収310万円","恋人あり","貯金40万円"],
-  ["31歳","男性","山形県","工場営業","年収520万円","妻あり・子供2人","貯金700万円"],
-  ["38歳","女性","福岡県","看護師","年収460万円","独身","貯金180万円"],
-  ["45歳","男性","大阪府","飲食店オーナー","年収900万円","離婚歴あり","借金400万円"],
-  ["29歳","女性","北海道","無職","年収0円","恋人なし","貯金8万円"],
-  ["52歳","男性","神奈川県","会社役員","年収2400万円","家庭あり","貯金6000万円"],
-  ["21歳","男性","愛知県","大学生","年収80万円","片思い中","貯金15万円"]
+const types={
+ king:{icon:"👑",name:"孤独な王",catch:"群れずに勝つ主人公",main:"あなたは、人に理解されるよりも結果で黙らせるタイプです。本当は人が嫌いなわけじゃない。でも群れると自分の力が鈍る。誰かに頼るより、自分で決めて自分で進む方が楽な人です。",strong:"決断力、孤独耐性、勝負強さ。土壇場で腹をくくれる。",weak:"人に頼れない。素直に甘えられない。強がりすぎる。",love:"追われると冷めやすい。でも本当に失うと深く引きずる。尊敬できる相手じゃないと続きにくい。",work:"営業、経営、独立、交渉、投資向き。組織の歯車より動かす側。"},
+ rebel:{icon:"🔥",name:"反逆者",catch:"常識を壊して進む主人公",main:"あなたは、決められた道を歩くほど息苦しくなる人です。普通・安定・みんなと同じ。この言葉に心が死にやすい。怒りや違和感を燃料に変えられるタイプです。",strong:"突破力、発想力、反骨心。理不尽に強い。",weak:"飽き性。敵を作りやすい。勢いで壊しすぎる。",love:"刺激がないと冷めやすい。束縛されると逃げたくなる。",work:"起業、副業、クリエイター、営業、現場改革向き。会社員なら自由度が命。"},
+ ronin:{icon:"⚔️",name:"浪人武士",catch:"負けても立つ主人公",main:"あなたは、一度折れても終わらない人です。傷ついても、悔しくても、最後は前を向く。義理や筋を大事にしていて、軽いやつが苦手です。",strong:"根性、義理堅さ、継続力。信じたものに強い。",weak:"不器用。感情を溜め込みやすい。過去を引きずる。",love:"一途。裏切りに弱い。軽い恋愛より深い関係を求める。",work:"職人、営業、独立、現場仕事、リーダー補佐向き。信頼で伸びる。"},
+ moon:{icon:"🌙",name:"夜明け待ち",catch:"誰かを救う主人公",main:"あなたは、人の痛みに気づける人です。自分が苦しくても、誰かのために動ける。ただその優しさで、自分を後回しにしすぎることがあります。",strong:"共感力、包容力、気づく力。人を安心させる。",weak:"我慢しすぎる。断れない。自分の本音が後回し。",love:"尽くすタイプ。相手を救おうとして疲れやすい。",work:"接客、福祉、教育、相談、サポート業向き。人の心を扱う仕事に強い。"},
+ mask:{icon:"🎭",name:"仮面の主人公",catch:"笑顔の裏に本音を隠す主人公",main:"あなたは外ではうまくやれる人です。空気も読めるし、必要なら明るく振る舞える。でも本当の気持ちはなかなか見せません。人に囲まれても孤独を感じやすいタイプです。",strong:"社交性、演技力、観察力。人に合わせるのが上手い。",weak:"本音を隠しすぎる。疲れを見せられない。",love:"モテやすいが満たされにくい。心を見抜いてくれる相手に弱い。",work:"営業、接客、芸能、SNS、交渉向き。見せ方で勝てる。"},
+ brain:{icon:"🧠",name:"冷静な策士",catch:"感情より勝ち筋を見る主人公",main:"あなたは勢いだけで動く人ではありません。感情に流されるより、状況を見て勝てる場所を探す。冷たく見られても、実は誰よりも先を考えています。",strong:"分析力、計画性、判断力。無駄な戦いを避けられる。",weak:"考えすぎる。感情表現が少ない。冷たいと思われる。",love:"感情的すぎる相手は苦手。尊敬と安心が大事。",work:"経営、マーケ、投資、管理職、企画向き。勝ち筋を作る側。"},
+ wolf:{icon:"🐺",name:"一匹狼",catch:"自由を失うくらいなら孤独を選ぶ主人公",main:"あなたは自由が命です。誰かに決められること、縛られること、説明を求められすぎることが苦手。自分のペースで動ける時に一番強くなります。",strong:"独立心、集中力、自分軸。誰にも流されにくい。",weak:"協調が面倒。孤立しやすい。助けを求めるのが遅い。",love:"距離感が大事。ベタベタされると逃げたくなる。",work:"個人事業、職人、運転、技術職、フリーランス向き。自由度が収入に直結。"},
+ hero:{icon:"🌸",name:"傷だらけのヒーロー",catch:"痛みを魅力に変える主人公",main:"あなたは過去の傷をただの傷で終わらせない人です。苦しんだ分、人の弱さも分かる。その経験が、あなたの深みと魅力になっています。",strong:"優しさ、粘り強さ、人間味。苦しい人の味方になれる。",weak:"自己否定しやすい。過去に戻りやすい。",love:"本気になると深い。軽く扱われると一気に冷める。",work:"表現、相談、教育、接客、SNS向き。経験を言葉にすると強い。"},
+ diamond:{icon:"💎",name:"選ばれし凡人",catch:"普通に見えて後半で化ける主人公",main:"あなたは派手な天才タイプではありません。でも地味に積み上げて、最後に強くなる人です。周りが諦めた後に伸びる、後半型の主人公です。",strong:"継続力、安定感、現実感。大崩れしにくい。",weak:"自分を過小評価しやすい。最初の一歩が遅い。",love:"安心感がある。長く付き合うほど価値が出る。",work:"会社員、管理、営業、資格職、積立型の副業向き。コツコツが武器。"},
+ peace:{icon:"🕊",name:"平和の守護者",catch:"争いより大切なものを守る主人公",main:"あなたは勝ち負けより、安心できる場所を大事にします。誰かを蹴落とすより、周りが笑っている方がいい。人にとっての帰る場所になれるタイプです。",strong:"安心感、調整力、優しさ。場を荒らさない。",weak:"勝負を避けすぎる。自分の欲を出せない。",love:"家庭向き。穏やかな関係で力を発揮する。",work:"事務、教育、接客、地域密着、サポート職向き。信頼で残る。"},
+ rise:{icon:"🚀",name:"成り上がり主人公",catch:"悔しさで上に行く主人公",main:"あなたは、見返したい気持ちを力に変えられる人です。金、成功、評価。きれいごとだけじゃ動かない。悔しさがあるほど火がつくタイプです。",strong:"向上心、行動力、稼ぐ意欲。勝負に強い。",weak:"焦りやすい。結果が出ないと荒れる。人と比べすぎる。",love:"尊敬されたいタイプ。だらしない相手には冷めやすい。",work:"営業、起業、副業、投資、成果報酬向き。数字が燃料。"},
+ genius:{icon:"🌌",name:"迷子の天才",catch:"ハマれば世界が変わる主人公",main:"あなたは普通の道にハマりにくい人です。才能や感性はある。でも方向が決まらない時期が長い。逆に一度ハマるものを見つけると、一気に化けます。",strong:"感性、発想力、爆発力。人と違う視点を持つ。",weak:"飽きる。迷う。生活リズムが崩れやすい。",love:"理解者を求める。普通を押し付けられると苦しい。",work:"クリエイター、企画、技術、研究、SNS向き。好きなこと特化で伸びる。"}
+};
+
+const questions=[
+{q:"人生で一番ほしいものは？",a:[["自由",["wolf","rebel"]],["成功",["king","rise"]],["安心",["peace","moon"]],["才能を活かす場所",["genius","brain"]]]},
+{q:"理不尽な上司がいたら？",a:[["言い返す",["rebel","king"]],["耐えて機会を待つ",["ronin","diamond"]],["辞める準備をする",["wolf","rise"]],["味方を増やす",["mask","brain"]]]},
+{q:"恋愛で一番冷めるのは？",a:[["束縛",["wolf","rebel"]],["嘘",["ronin","hero"]],["尊敬できない",["king","brain"]],["重すぎる",["mask","genius"]]]},
+{q:"友達に裏切られたら？",a:[["即切る",["king","wolf"]],["理由を聞く",["moon","peace"]],["見返す",["rise","rebel"]],["何も言わず離れる",["mask","hero"]]]},
+{q:"仕事で向いてるのは？",a:[["人を動かす",["king","brain"]],["自由に稼ぐ",["wolf","rebel"]],["人を支える",["moon","peace"]],["好きなことで突き抜ける",["genius","rise"]]]},
+{q:"あなたの弱点に近いのは？",a:[["頑固",["king","ronin"]],["飽き性",["rebel","genius"]],["我慢しすぎ",["moon","peace"]],["本音を隠す",["mask","hero"]]]},
+{q:"休日の急な誘い。どうする？",a:[["行く",["mask","rise"]],["相手による",["brain","king"]],["断る",["wolf","genius"]],["無理して行く",["moon","peace"]]]},
+{q:"お金について近いのは？",a:[["絶対増やしたい",["rise","king"]],["自由のために必要",["wolf","rebel"]],["安定してればいい",["peace","diamond"]],["好きなことに使いたい",["genius","mask"]]]},
+{q:"人生で一番燃える瞬間は？",a:[["見返す時",["rise","rebel"]],["守る人がいる時",["ronin","peace"]],["勝ち筋が見えた時",["brain","king"]],["心が動いた時",["hero","moon"]]]},
+{q:"あなたの孤独耐性は？",a:[["一人の方が強い",["wolf","king"]],["本当は寂しい",["mask","hero"]],["誰かのためなら頑張れる",["moon","ronin"]],["気分次第",["genius","rebel"]]]},
+{q:"周りから見たあなたは？",a:[["強そう",["king","ronin"]],["優しそう",["moon","peace"]],["変わってる",["genius","rebel"]],["何考えてるか分からない",["mask","brain"]]]},
+{q:"最後に勝つのはどんな人？",a:[["覚悟がある人",["king","ronin"]],["頭を使う人",["brain","mask"]],["行動する人",["rise","rebel"]],["優しさを失わない人",["moon","hero"]]]}
 ];
 
-const events = [
-  {
-    text:"大切な人から深夜に電話が来ました。明日は人生を変える面接です。どうしますか？",
-    choices:[
-      ["電話に出る","あなたは信頼を失わずに済みました。しかし睡眠不足で面接は少し失敗しました。",8,-2,1],
-      ["寝る","面接は完璧でした。でもその人との距離は、少しだけ戻らなくなりました。",-3,8,6]
-    ]
-  },
-  {
-    text:"怪しいけど大きく稼げそうな話が来ました。友達は『今しかない』と言っています。",
-    choices:[
-      ["乗る","一時的に大金を手にしました。しかし不安とトラブルも増えました。",-5,10,8],
-      ["断る","お金は増えません。でもあなたは静かな夜を守りました。",5,0,1]
-    ]
-  },
-  {
-    text:"昔好きだった人から連絡が来ました。今の生活は安定しています。",
-    choices:[
-      ["会う","胸は高鳴りました。でも今の生活に小さなヒビが入りました。",2,-1,8],
-      ["会わない","何も起きませんでした。でもその夜、少しだけ別の人生を想像しました。",4,0,3]
-    ]
-  },
-  {
-    text:"会社で理不尽な上司に怒鳴られました。周りは黙っています。",
-    choices:[
-      ["言い返す","空気は凍りました。でもあなたを見る目が少し変わりました。",3,-3,2],
-      ["黙る","その日は無事に終わりました。でも心の中に何かが残りました。",-3,2,6]
-    ]
-  },
-  {
-    text:"家族が助けを求めています。でもあなた自身も限界です。",
-    choices:[
-      ["助ける","誰かは救えました。でもあなたの心はかなり削れました。",5,-4,2],
-      ["距離を置く","あなたは自分を守りました。でも罪悪感は残りました。",1,1,7]
-    ]
-  }
-];
+let index=0;
+let scores={};
 
-let currentLife = null;
-let currentEvent = null;
-let score = {happy:0,money:0,regret:0};
-
-function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
-function drawLife(){
-  currentLife = pick(profiles);
-  score = {happy:0,money:0,regret:0};
-
+function start(){
+  scores={};
+  Object.keys(types).forEach(k=>scores[k]=0);
+  index=0;
   document.getElementById("top").classList.add("hidden");
-  document.getElementById("eventCard").classList.add("hidden");
-  document.getElementById("resultCard").classList.add("hidden");
-  document.getElementById("lifeCard").classList.remove("hidden");
-
-  const labels=["年齢","性別","場所","職業","収入","状況","資産"];
-  document.getElementById("lifeGrid").innerHTML = currentLife.map((v,i)=>`
-    <div class="item">
-      <div class="label">${labels[i]}</div>
-      <div class="value">${v}</div>
-    </div>
-  `).join("");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+  showQ();
 }
 
-function startLife(){
-  document.getElementById("lifeCard").classList.add("hidden");
-  nextEvent();
+function showQ(){
+  const q=questions[index];
+  document.getElementById("bar").style.width=((index)/questions.length*100)+"%";
+  document.getElementById("qnum").textContent=`Q${index+1} / ${questions.length}`;
+  document.getElementById("question").textContent=q.q;
+  document.getElementById("choices").innerHTML=q.a.map((x,i)=>`<button class="choice" onclick="answer(${i})">${x[0]}</button>`).join("");
 }
 
-function nextEvent(){
-  currentEvent = pick(events);
-  document.getElementById("resultCard").classList.add("hidden");
-  document.getElementById("eventCard").classList.remove("hidden");
-
-  document.getElementById("eventText").textContent = currentEvent.text;
-  document.getElementById("choices").innerHTML = currentEvent.choices.map((c,i)=>`
-    <button class="choice" onclick="choose(${i})">${c[0]}</button>
-  `).join("");
+function answer(i){
+  questions[index].a[i][1].forEach(t=>scores[t]+=2);
+  index++;
+  if(index>=questions.length) showResult();
+  else showQ();
 }
 
-function choose(i){
-  const c = currentEvent.choices[i];
-  score.happy += c[2];
-  score.money += c[3];
-  score.regret += c[4];
+function showResult(){
+  document.getElementById("bar").style.width="100%";
+  let best=Object.keys(scores).sort((a,b)=>scores[b]-scores[a])[0];
+  const r=types[best];
 
-  document.getElementById("eventCard").classList.add("hidden");
-  document.getElementById("resultCard").classList.remove("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
 
-  document.getElementById("resultText").textContent = c[1];
-  document.getElementById("happy").textContent = score.happy;
-  document.getElementById("money").textContent = score.money;
-  document.getElementById("regret").textContent = score.regret;
+  document.getElementById("resultIcon").textContent=r.icon;
+  document.getElementById("resultName").textContent=r.name;
+  document.getElementById("catch").textContent=r.catch;
+  document.getElementById("mainText").textContent=r.main;
+  document.getElementById("strong").textContent=r.strong;
+  document.getElementById("weak").textContent=r.weak;
+  document.getElementById("love").textContent=r.love;
+  document.getElementById("work").textContent=r.work;
+
+  window.currentResult=r;
 }
 
-function resetAll(){
+function copyResult(){
+  const r=window.currentResult;
+  const text=`私は【${r.icon} ${r.name}】タイプでした。\n${r.catch}\n\nあなたは何タイプ？\n#人生主人公タイプ診断`;
+  navigator.clipboard.writeText(text).then(()=>{
+    alert("結果をコピーした！");
+  });
+}
+
+function restart(){
+  document.getElementById("result").classList.add("hidden");
   document.getElementById("top").classList.remove("hidden");
-  document.getElementById("lifeCard").classList.add("hidden");
-  document.getElementById("eventCard").classList.add("hidden");
-  document.getElementById("resultCard").classList.add("hidden");
 }
 </script>
 </body>
