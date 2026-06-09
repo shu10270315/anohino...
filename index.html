@@ -1,242 +1,254 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>あの日</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(120, 80, 255, 0.25), transparent 35%),
-        linear-gradient(180deg, #08080c 0%, #111118 55%, #050507 100%);
-      color: #f5f1ea;
-      min-height: 100vh;
-    }
-
-    .wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 20px 80px;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 7px 13px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 999px;
-      color: #cfc7ff;
-      font-size: 13px;
-      letter-spacing: .08em;
-      margin-bottom: 28px;
-      background: rgba(255,255,255,.06);
-    }
-
-    h1 {
-      font-size: 64px;
-      line-height: 1;
-      margin: 0 0 18px;
-      letter-spacing: .06em;
-      font-weight: 800;
-    }
-
-    .lead {
-      font-size: 25px;
-      line-height: 1.6;
-      font-weight: 700;
-      margin: 0 0 18px;
-    }
-
-    .sub {
-      color: #b8b2aa;
-      line-height: 1.9;
-      font-size: 15px;
-      margin-bottom: 34px;
-    }
-
-    .button {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 18px;
-      border-radius: 18px;
-      background: #f5f1ea;
-      color: #08080c;
-      font-weight: 800;
-      text-decoration: none;
-      font-size: 17px;
-      margin-bottom: 34px;
-      box-shadow: 0 15px 45px rgba(255,255,255,.16);
-    }
-
-    .section-title {
-      color: #8f88ff;
-      font-size: 14px;
-      margin: 34px 0 14px;
-      letter-spacing: .08em;
-      font-weight: 700;
-    }
-
-    .card {
-      background: rgba(255,255,255,.075);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
-      padding: 20px;
-      margin-bottom: 14px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.22);
-    }
-
-    .card h2 {
-      font-size: 18px;
-      margin: 0 0 12px;
-    }
-
-    .card p {
-      margin: 0;
-      color: #ddd7ce;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .reaction {
-      margin-top: 14px;
-      color: #aaa2ff;
-      font-size: 13px;
-    }
-
-    .form {
-      margin-top: 24px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 24px;
-      padding: 20px;
-    }
-
-    input, textarea {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.35);
-      color: #fff;
-      border-radius: 14px;
-      padding: 14px;
-      font-size: 16px;
-      margin-bottom: 12px;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    button {
-      width: 100%;
-      border: none;
-      border-radius: 16px;
-      padding: 16px;
-      background: #8f88ff;
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .note {
-      color: #888;
-      font-size: 12px;
-      line-height: 1.7;
-      margin-top: 12px;
-      text-align: center;
-    }
-
-    footer {
-      margin-top: 42px;
-      color: #777;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 48px;
-      }
-
-      .lead {
-        font-size: 21px;
-      }
-
-      .wrap {
-        padding-top: 38px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あの日</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
+  color:white;
+  min-height:100vh;
+  background:linear-gradient(#20172d,#63384d 48%,#f0a06b 73%,#182436);
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 72% 22%,rgba(255,219,150,.9),transparent 9%),
+    linear-gradient(transparent 66%,rgba(12,18,28,.92) 67%);
+  z-index:-3;
+}
+body:after{
+  content:"";
+  position:fixed;
+  left:50%;
+  bottom:17%;
+  width:38px;
+  height:115px;
+  background:rgba(8,8,13,.75);
+  border-radius:24px 24px 8px 8px;
+  box-shadow:-13px -32px 0 -8px rgba(8,8,13,.8);
+  transform:translateX(-50%);
+  z-index:-2;
+}
+.app{
+  max-width:500px;
+  min-height:100vh;
+  margin:0 auto;
+  padding:18px;
+  background:rgba(18,14,26,.42);
+  backdrop-filter:blur(16px);
+}
+.logo{font-size:38px;font-weight:900;letter-spacing:.09em;margin-top:26px}
+.sub{color:rgba(255,255,255,.78);line-height:1.7;font-size:14px;margin:8px 0 18px}
+.hero,.box,.card,.ad{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:24px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 14px 40px rgba(0,0,0,.28);
+}
+.hero b{font-size:15px}
+.hero p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.82)}
+textarea,input,select{
+  width:100%;
+  border:0;
+  outline:0;
+  border-radius:16px;
+  padding:13px;
+  font-size:16px;
+  margin-top:10px;
+}
+textarea{min-height:120px;resize:none}
+button{
+  border:0;
+  border-radius:999px;
+  padding:11px 13px;
+  font-weight:800;
+}
+.postBtn{
+  width:100%;
+  margin-top:10px;
+  background:linear-gradient(135deg,#ffd08a,#ff8fab);
+  color:#28131c;
+  font-size:15px;
+}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{flex:1;background:rgba(255,255,255,.16);color:white}
+.tabs .active{background:white;color:#241824}
+.tag,.name{
+  display:inline-block;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.2);
+  margin-right:6px;
+}
+.text{white-space:pre-wrap;line-height:1.75;font-size:15px;margin-top:10px}
+.actions{display:flex;gap:8px;margin-top:14px}
+.actions button{flex:1;background:rgba(255,255,255,.18);color:white;font-size:13px}
+.commentArea{margin-top:14px;border-top:1px solid rgba(255,255,255,.18);padding-top:10px}
+.comment{font-size:13px;background:rgba(0,0,0,.22);padding:9px 11px;border-radius:14px;margin-top:8px;line-height:1.5}
+.commentRow{display:flex;gap:8px}
+.commentRow button{margin-top:10px;background:white;color:#251525}
+.ad{
+  text-align:center;
+  color:rgba(255,255,255,.75);
+  font-size:13px;
+  border-style:dashed;
+}
+.empty{text-align:center;color:rgba(255,255,255,.7);padding:25px 0}
+.small{font-size:12px;color:rgba(255,255,255,.55);margin-top:8px}
+@media(min-width:760px){
+  body{padding:30px 0}
+  .app{border-radius:34px;min-height:90vh;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="tag">匿名で残す、あの日のこと</div>
+<main class="app">
+  <div class="logo">あの日</div>
+  <div class="sub">言えなかったごめん。戻れない後悔。ここにだけ、置いていく。</div>
 
-    <h1>あの日</h1>
+  <section class="hero">
+    <b>今日のお題：あの時、謝れなかったこと</b>
+    <p>匿名で吐き出せる場所。読んだ人は「許す」「わかる」で少しだけ救える。</p>
+  </section>
 
-    <p class="lead">
-      人生で一番、<br>
-      後悔していることを書いてください。
-    </p>
+  <section class="box">
+    <textarea id="postText" placeholder="あの日、言えなかったことを書く..."></textarea>
+    <select id="category">
+      <option>謝罪</option>
+      <option>後悔</option>
+      <option>恋愛</option>
+      <option>家族</option>
+      <option>友達</option>
+      <option>仕事</option>
+      <option>黒歴史</option>
+    </select>
+    <button class="postBtn" onclick="addPost()">匿名で投稿する</button>
+    <div class="small">※今はこの端末内に保存されます。本格SNS化で全員共有にできます。</div>
+  </section>
 
-    <p class="sub">
-      誰にも言えなかったこと。<br>
-      謝れなかったこと。<br>
-      今でも思い出してしまう、あの日のこと。
-    </p>
+  <div class="ad">
+    広告枠<br>
+    ここに将来 AdSense / 占い / マッチング / 相談系広告を入れる
+  </div>
 
-    <a href="#post" class="button">匿名で残す</a>
+  <div class="tabs">
+    <button id="latestBtn" class="active" onclick="setMode('latest')">新着</button>
+    <button id="popularBtn" onclick="setMode('popular')">人気</button>
+  </div>
 
-    <div class="section-title">みんなの「あの日」</div>
+  <section id="posts"></section>
+</main>
 
-    <section class="card">
-      <h2>高校の時、親友を裏切った。</h2>
-      <p>
-        あの時、周りに流されて笑った。<br>
-        本当は助けたかった。今でも夢に出てくる。
-      </p>
-      <div class="reaction">🕊️ 24人が読んだ　🤍 12人が共感</div>
-    </section>
+<script>
+let posts = JSON.parse(localStorage.getItem("anohi_posts") || "[]");
+let mode = "latest";
 
-    <section class="card">
-      <h2>父が亡くなる前日、電話に出なかった。</h2>
-      <p>
-        「あとでかけ直せばいい」と思った。<br>
-        その「あと」は、もう来なかった。
-      </p>
-      <div class="reaction">🕊️ 58人が読んだ　🤍 31人が共感</div>
-    </section>
+const names = ["名無しの後悔","夜明け待ち","あの日の人","言えなかった人","夕暮れの匿名"];
 
-    <section class="card">
-      <h2>好きだった人に、好きと言えなかった。</h2>
-      <p>
-        今さらどうにもならないけど、<br>
-        たまに思う。あの日言ってたら、何か変わったのかな。
-      </p>
-      <div class="reaction">🕊️ 43人が読んだ　🤍 19人が共感</div>
-    </section>
+function save(){
+  localStorage.setItem("anohi_posts", JSON.stringify(posts));
+}
 
-    <form id="post" class="form">
-      <div class="section-title">あなたの「あの日」を残す</div>
-      <input type="text" placeholder="タイトル" />
-      <textarea placeholder="ここに、誰にも言えなかったことを書いてください。"></textarea>
-      <button type="button">投稿する</button>
-      <p class="note">
-        ※今はデモ版です。投稿内容はまだ保存されません。<br>
-        次に本物の投稿機能を追加します。
-      </p>
-    </form>
+function addPost(){
+  const text = document.getElementById("postText").value.trim();
+  const category = document.getElementById("category").value;
+  if(!text) return;
 
-    <footer>
-      © あの日 — 言えなかった言葉を、ここに。
-    </footer>
-  </main>
+  posts.unshift({
+    id: Date.now(),
+    name: names[Math.floor(Math.random()*names.length)],
+    text,
+    category,
+    like:0,
+    forgive:0,
+    understand:0,
+    comments:[],
+    created: new Date().toLocaleString("ja-JP")
+  });
+
+  document.getElementById("postText").value="";
+  save();
+  render();
+}
+
+function react(i,type){
+  posts[i][type]++;
+  save();
+  render();
+}
+
+function addComment(i){
+  const input=document.getElementById("comment-"+posts[i].id);
+  const text=input.value.trim();
+  if(!text) return;
+  posts[i].comments.push(text);
+  save();
+  render();
+}
+
+function setMode(m){
+  mode=m;
+  document.getElementById("latestBtn").className=m==="latest"?"active":"";
+  document.getElementById("popularBtn").className=m==="popular"?"active":"";
+  render();
+}
+
+function score(p){
+  return p.like + p.forgive*2 + p.understand + p.comments.length*2;
+}
+
+function render(){
+  const area=document.getElementById("posts");
+  if(posts.length===0){
+    area.innerHTML='<div class="empty">まだ投稿はありません。</div>';
+    return;
+  }
+
+  let list=[...posts];
+  if(mode==="popular") list.sort((a,b)=>score(b)-score(a));
+
+  area.innerHTML=list.map((p)=>{
+    const i=posts.findIndex(x=>x.id===p.id);
+    return `
+    <article class="card">
+      <span class="name">${safe(p.name)}</span>
+      <span class="tag">${safe(p.category)}</span>
+      <div class="small">${safe(p.created)}</div>
+      <div class="text">${safe(p.text)}</div>
+
+      <div class="actions">
+        <button onclick="react(${i},'like')">♡ ${p.like}</button>
+        <button onclick="react(${i},'forgive')">🤝 許す ${p.forgive}</button>
+        <button onclick="react(${i},'understand')">💛 わかる ${p.understand}</button>
+      </div>
+
+      <div class="commentArea">
+        ${p.comments.map(c=>`<div class="comment">${safe(c)}</div>`).join("")}
+        <div class="commentRow">
+          <input id="comment-${p.id}" placeholder="やさしいコメントを書く">
+          <button onclick="addComment(${i})">送信</button>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function safe(str){
+  return String(str).replace(/[&<>"']/g,m=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+  }[m]));
+}
+
+render();
+</script>
 </body>
 </html>
