@@ -1,254 +1,305 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>あの日</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>人生ガチャ</title>
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
-  color:white;
   min-height:100vh;
-  background:linear-gradient(#20172d,#63384d 48%,#f0a06b 73%,#182436);
-}
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
   background:
-    radial-gradient(circle at 72% 22%,rgba(255,219,150,.9),transparent 9%),
-    linear-gradient(transparent 66%,rgba(12,18,28,.92) 67%);
-  z-index:-3;
-}
-body:after{
-  content:"";
-  position:fixed;
-  left:50%;
-  bottom:17%;
-  width:38px;
-  height:115px;
-  background:rgba(8,8,13,.75);
-  border-radius:24px 24px 8px 8px;
-  box-shadow:-13px -32px 0 -8px rgba(8,8,13,.8);
-  transform:translateX(-50%);
-  z-index:-2;
+    radial-gradient(circle at 50% 0%,rgba(255,210,120,.18),transparent 35%),
+    linear-gradient(180deg,#050505,#101010 55%,#050505);
+  color:#fff;
 }
 .app{
-  max-width:500px;
-  min-height:100vh;
+  max-width:520px;
   margin:0 auto;
-  padding:18px;
-  background:rgba(18,14,26,.42);
-  backdrop-filter:blur(16px);
+  min-height:100vh;
+  padding:22px;
 }
-.logo{font-size:38px;font-weight:900;letter-spacing:.09em;margin-top:26px}
-.sub{color:rgba(255,255,255,.78);line-height:1.7;font-size:14px;margin:8px 0 18px}
-.hero,.box,.card,.ad{
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.22);
-  border-radius:24px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 14px 40px rgba(0,0,0,.28);
+.hero{
+  padding:70px 0 34px;
+  text-align:center;
 }
-.hero b{font-size:15px}
-.hero p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.82)}
-textarea,input,select{
+.badge{
+  display:inline-block;
+  padding:7px 13px;
+  border:1px solid rgba(255,215,120,.35);
+  border-radius:999px;
+  color:#ffd978;
+  font-size:12px;
+  margin-bottom:18px;
+}
+h1{
+  font-size:46px;
+  margin:0;
+  letter-spacing:.08em;
+}
+.lead{
+  color:rgba(255,255,255,.7);
+  line-height:1.8;
+  margin:18px 0 28px;
+}
+.card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
+button{
   width:100%;
   border:0;
-  outline:0;
-  border-radius:16px;
-  padding:13px;
-  font-size:16px;
-  margin-top:10px;
-}
-textarea{min-height:120px;resize:none}
-button{
-  border:0;
   border-radius:999px;
-  padding:11px 13px;
+  padding:16px;
+  font-size:16px;
+  font-weight:900;
+  color:#080808;
+  background:linear-gradient(135deg,#ffe08a,#c8942e);
+}
+button.secondary{
+  margin-top:10px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+}
+.life-title{
+  color:#ffd978;
+  font-size:13px;
+  margin-bottom:12px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.item{
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:13px;
+}
+.label{
+  color:rgba(255,255,255,.45);
+  font-size:11px;
+}
+.value{
+  margin-top:5px;
   font-weight:800;
 }
-.postBtn{
-  width:100%;
+.event{
+  font-size:20px;
+  line-height:1.7;
+  font-weight:800;
+}
+.choice{
   margin-top:10px;
-  background:linear-gradient(135deg,#ffd08a,#ff8fab);
-  color:#28131c;
-  font-size:15px;
 }
-.tabs{display:flex;gap:8px;margin-bottom:14px}
-.tabs button{flex:1;background:rgba(255,255,255,.16);color:white}
-.tabs .active{background:white;color:#241824}
-.tag,.name{
-  display:inline-block;
-  font-size:12px;
-  padding:5px 10px;
-  border-radius:999px;
-  background:rgba(255,255,255,.2);
-  margin-right:6px;
+.result{
+  line-height:1.8;
+  color:rgba(255,255,255,.86);
 }
-.text{white-space:pre-wrap;line-height:1.75;font-size:15px;margin-top:10px}
-.actions{display:flex;gap:8px;margin-top:14px}
-.actions button{flex:1;background:rgba(255,255,255,.18);color:white;font-size:13px}
-.commentArea{margin-top:14px;border-top:1px solid rgba(255,255,255,.18);padding-top:10px}
-.comment{font-size:13px;background:rgba(0,0,0,.22);padding:9px 11px;border-radius:14px;margin-top:8px;line-height:1.5}
-.commentRow{display:flex;gap:8px}
-.commentRow button{margin-top:10px;background:white;color:#251525}
-.ad{
+.score{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:14px;
+}
+.score div{
+  flex:1;
   text-align:center;
-  color:rgba(255,255,255,.75);
-  font-size:13px;
-  border-style:dashed;
+  background:rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:12px 8px;
 }
-.empty{text-align:center;color:rgba(255,255,255,.7);padding:25px 0}
-.small{font-size:12px;color:rgba(255,255,255,.55);margin-top:8px}
+.score b{
+  color:#ffd978;
+  font-size:22px;
+}
+.hidden{display:none}
+.small{
+  color:rgba(255,255,255,.45);
+  font-size:12px;
+  line-height:1.6;
+  text-align:center;
+  margin-top:18px;
+}
+.footer{
+  text-align:center;
+  color:rgba(255,255,255,.35);
+  font-size:12px;
+  margin:30px 0 10px;
+}
 @media(min-width:760px){
-  body{padding:30px 0}
-  .app{border-radius:34px;min-height:90vh;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  body{padding:34px 0}
+  .app{
+    border-radius:34px;
+    min-height:90vh;
+    background:rgba(255,255,255,.03);
+    box-shadow:0 40px 100px rgba(0,0,0,.55);
+  }
 }
 </style>
 </head>
 <body>
 <main class="app">
-  <div class="logo">あの日</div>
-  <div class="sub">言えなかったごめん。戻れない後悔。ここにだけ、置いていく。</div>
 
-  <section class="hero">
-    <b>今日のお題：あの時、謝れなかったこと</b>
-    <p>匿名で吐き出せる場所。読んだ人は「許す」「わかる」で少しだけ救える。</p>
+  <section id="top" class="hero">
+    <div class="badge">AI LIFE SIMULATOR</div>
+    <h1>人生ガチャ</h1>
+    <p class="lead">
+      あなたは、別の人生を引けます。<br>
+      金持ちか。貧乏か。成功か。後悔か。<br>
+      すべては、最初の一回で決まる。
+    </p>
+    <button onclick="drawLife()">人生を引く</button>
+    <p class="small">※まずは無料プロトタイプ版。何度でも引けます。</p>
   </section>
 
-  <section class="box">
-    <textarea id="postText" placeholder="あの日、言えなかったことを書く..."></textarea>
-    <select id="category">
-      <option>謝罪</option>
-      <option>後悔</option>
-      <option>恋愛</option>
-      <option>家族</option>
-      <option>友達</option>
-      <option>仕事</option>
-      <option>黒歴史</option>
-    </select>
-    <button class="postBtn" onclick="addPost()">匿名で投稿する</button>
-    <div class="small">※今はこの端末内に保存されます。本格SNS化で全員共有にできます。</div>
+  <section id="lifeCard" class="card hidden">
+    <div class="life-title">あなたの人生</div>
+    <div class="grid" id="lifeGrid"></div>
+    <button style="margin-top:16px" onclick="startLife()">人生を始める</button>
+    <button class="secondary" onclick="drawLife()">引き直す</button>
   </section>
 
-  <div class="ad">
-    広告枠<br>
-    ここに将来 AdSense / 占い / マッチング / 相談系広告を入れる
-  </div>
+  <section id="eventCard" class="card hidden">
+    <div class="life-title">人生イベント</div>
+    <div class="event" id="eventText"></div>
+    <div id="choices"></div>
+  </section>
 
-  <div class="tabs">
-    <button id="latestBtn" class="active" onclick="setMode('latest')">新着</button>
-    <button id="popularBtn" onclick="setMode('popular')">人気</button>
-  </div>
+  <section id="resultCard" class="card hidden">
+    <div class="life-title">選択の結果</div>
+    <div class="result" id="resultText"></div>
+    <div class="score">
+      <div>幸福<br><b id="happy">0</b></div>
+      <div>金<br><b id="money">0</b></div>
+      <div>後悔<br><b id="regret">0</b></div>
+    </div>
+    <button style="margin-top:16px" onclick="nextEvent()">次のイベントへ</button>
+    <button class="secondary" onclick="resetAll()">最初から</button>
+  </section>
 
-  <section id="posts"></section>
+  <div class="footer">人生は、選べない。だけど、覗くことはできる。</div>
 </main>
 
 <script>
-let posts = JSON.parse(localStorage.getItem("anohi_posts") || "[]");
-let mode = "latest";
+const profiles = [
+  ["17歳","男性","沖縄県","高校生","年収0円","彼女なし","貯金2万円"],
+  ["24歳","女性","東京都","美容師","年収310万円","恋人あり","貯金40万円"],
+  ["31歳","男性","山形県","工場営業","年収520万円","妻あり・子供2人","貯金700万円"],
+  ["38歳","女性","福岡県","看護師","年収460万円","独身","貯金180万円"],
+  ["45歳","男性","大阪府","飲食店オーナー","年収900万円","離婚歴あり","借金400万円"],
+  ["29歳","女性","北海道","無職","年収0円","恋人なし","貯金8万円"],
+  ["52歳","男性","神奈川県","会社役員","年収2400万円","家庭あり","貯金6000万円"],
+  ["21歳","男性","愛知県","大学生","年収80万円","片思い中","貯金15万円"]
+];
 
-const names = ["名無しの後悔","夜明け待ち","あの日の人","言えなかった人","夕暮れの匿名"];
-
-function save(){
-  localStorage.setItem("anohi_posts", JSON.stringify(posts));
-}
-
-function addPost(){
-  const text = document.getElementById("postText").value.trim();
-  const category = document.getElementById("category").value;
-  if(!text) return;
-
-  posts.unshift({
-    id: Date.now(),
-    name: names[Math.floor(Math.random()*names.length)],
-    text,
-    category,
-    like:0,
-    forgive:0,
-    understand:0,
-    comments:[],
-    created: new Date().toLocaleString("ja-JP")
-  });
-
-  document.getElementById("postText").value="";
-  save();
-  render();
-}
-
-function react(i,type){
-  posts[i][type]++;
-  save();
-  render();
-}
-
-function addComment(i){
-  const input=document.getElementById("comment-"+posts[i].id);
-  const text=input.value.trim();
-  if(!text) return;
-  posts[i].comments.push(text);
-  save();
-  render();
-}
-
-function setMode(m){
-  mode=m;
-  document.getElementById("latestBtn").className=m==="latest"?"active":"";
-  document.getElementById("popularBtn").className=m==="popular"?"active":"";
-  render();
-}
-
-function score(p){
-  return p.like + p.forgive*2 + p.understand + p.comments.length*2;
-}
-
-function render(){
-  const area=document.getElementById("posts");
-  if(posts.length===0){
-    area.innerHTML='<div class="empty">まだ投稿はありません。</div>';
-    return;
+const events = [
+  {
+    text:"大切な人から深夜に電話が来ました。明日は人生を変える面接です。どうしますか？",
+    choices:[
+      ["電話に出る","あなたは信頼を失わずに済みました。しかし睡眠不足で面接は少し失敗しました。",8,-2,1],
+      ["寝る","面接は完璧でした。でもその人との距離は、少しだけ戻らなくなりました。",-3,8,6]
+    ]
+  },
+  {
+    text:"怪しいけど大きく稼げそうな話が来ました。友達は『今しかない』と言っています。",
+    choices:[
+      ["乗る","一時的に大金を手にしました。しかし不安とトラブルも増えました。",-5,10,8],
+      ["断る","お金は増えません。でもあなたは静かな夜を守りました。",5,0,1]
+    ]
+  },
+  {
+    text:"昔好きだった人から連絡が来ました。今の生活は安定しています。",
+    choices:[
+      ["会う","胸は高鳴りました。でも今の生活に小さなヒビが入りました。",2,-1,8],
+      ["会わない","何も起きませんでした。でもその夜、少しだけ別の人生を想像しました。",4,0,3]
+    ]
+  },
+  {
+    text:"会社で理不尽な上司に怒鳴られました。周りは黙っています。",
+    choices:[
+      ["言い返す","空気は凍りました。でもあなたを見る目が少し変わりました。",3,-3,2],
+      ["黙る","その日は無事に終わりました。でも心の中に何かが残りました。",-3,2,6]
+    ]
+  },
+  {
+    text:"家族が助けを求めています。でもあなた自身も限界です。",
+    choices:[
+      ["助ける","誰かは救えました。でもあなたの心はかなり削れました。",5,-4,2],
+      ["距離を置く","あなたは自分を守りました。でも罪悪感は残りました。",1,1,7]
+    ]
   }
+];
 
-  let list=[...posts];
-  if(mode==="popular") list.sort((a,b)=>score(b)-score(a));
+let currentLife = null;
+let currentEvent = null;
+let score = {happy:0,money:0,regret:0};
 
-  area.innerHTML=list.map((p)=>{
-    const i=posts.findIndex(x=>x.id===p.id);
-    return `
-    <article class="card">
-      <span class="name">${safe(p.name)}</span>
-      <span class="tag">${safe(p.category)}</span>
-      <div class="small">${safe(p.created)}</div>
-      <div class="text">${safe(p.text)}</div>
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-      <div class="actions">
-        <button onclick="react(${i},'like')">♡ ${p.like}</button>
-        <button onclick="react(${i},'forgive')">🤝 許す ${p.forgive}</button>
-        <button onclick="react(${i},'understand')">💛 わかる ${p.understand}</button>
-      </div>
+function drawLife(){
+  currentLife = pick(profiles);
+  score = {happy:0,money:0,regret:0};
 
-      <div class="commentArea">
-        ${p.comments.map(c=>`<div class="comment">${safe(c)}</div>`).join("")}
-        <div class="commentRow">
-          <input id="comment-${p.id}" placeholder="やさしいコメントを書く">
-          <button onclick="addComment(${i})">送信</button>
-        </div>
-      </div>
-    </article>`;
-  }).join("");
+  document.getElementById("top").classList.add("hidden");
+  document.getElementById("eventCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.add("hidden");
+  document.getElementById("lifeCard").classList.remove("hidden");
+
+  const labels=["年齢","性別","場所","職業","収入","状況","資産"];
+  document.getElementById("lifeGrid").innerHTML = currentLife.map((v,i)=>`
+    <div class="item">
+      <div class="label">${labels[i]}</div>
+      <div class="value">${v}</div>
+    </div>
+  `).join("");
 }
 
-function safe(str){
-  return String(str).replace(/[&<>"']/g,m=>({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
-  }[m]));
+function startLife(){
+  document.getElementById("lifeCard").classList.add("hidden");
+  nextEvent();
 }
 
-render();
+function nextEvent(){
+  currentEvent = pick(events);
+  document.getElementById("resultCard").classList.add("hidden");
+  document.getElementById("eventCard").classList.remove("hidden");
+
+  document.getElementById("eventText").textContent = currentEvent.text;
+  document.getElementById("choices").innerHTML = currentEvent.choices.map((c,i)=>`
+    <button class="choice" onclick="choose(${i})">${c[0]}</button>
+  `).join("");
+}
+
+function choose(i){
+  const c = currentEvent.choices[i];
+  score.happy += c[2];
+  score.money += c[3];
+  score.regret += c[4];
+
+  document.getElementById("eventCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.remove("hidden");
+
+  document.getElementById("resultText").textContent = c[1];
+  document.getElementById("happy").textContent = score.happy;
+  document.getElementById("money").textContent = score.money;
+  document.getElementById("regret").textContent = score.regret;
+}
+
+function resetAll(){
+  document.getElementById("top").classList.remove("hidden");
+  document.getElementById("lifeCard").classList.add("hidden");
+  document.getElementById("eventCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.add("hidden");
+}
 </script>
 </body>
 </html>
